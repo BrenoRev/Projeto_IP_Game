@@ -38,6 +38,9 @@ pygame.display.set_icon(icone)
 # Nome da  tela
 pygame.display.set_caption("A Viagem Espacial de Calegário")
 
+#Imagem do meteoro
+meteoro = pygame.transform.scale(pygame.image.load("images/foto_meteoro1.png"), (50,50))
+
 # Pontuação inicial
 pontuacao = 0
 
@@ -48,9 +51,13 @@ y = 0
 # Relogio de tempo
 relogio = pygame.time.Clock()
 
-# Posição aleátoria
+# Posição aleátoria gasolina
 position_x = randint(0, largura-40)
 position_y = randint(0, altura-40)
+
+# Posição aleatória meteoro
+position_z = randint(0, largura-40)
+position_h = randint(0, largura-40)
 
 # Fonte das mensagens na telaa
 fonte = pygame.font.SysFont("Arial", 30, True, True)
@@ -125,6 +132,10 @@ while True:
     ret_gasolina = pygame.draw.rect(s, (100, 100, 255), (position_x, position_y, 50, 50))
     tela.blit(gasolina, (position_x, position_y))
 
+    # Criar um retângulo no meteoro para colidir
+    ret_meteoro = pygame.draw.rect(s, (100, 100, 255), (position_z, position_h, 50, 50))
+    tela.blit(meteoro, (position_z, position_h))
+
     if ret_player.colliderect(ret_gasolina):
         # Barulho quando colidir
         barulho_colisao.play()
@@ -133,6 +144,15 @@ while True:
         position_y = randint(0, altura-40)
         # Quando pegar a gasolina ganha + 500 pontos
         pontuacao += 500
+
+    if ret_player.colliderect(ret_meteoro):
+        # Barulho quando colidir
+        barulho_colisao.play()
+        # Recriar o objeto em uma posição aleatoria dentro da tela
+        position_z = randint(0, largura - 40)
+        position_h = randint(0, altura - 40)
+        # Quando o meteoro bater na nave
+        tempo_total -= 5
 
     # Aparecer a pontuação e o tempo na tela
     tela.blit(pontuacao_formatada, (largura-300, 40))
