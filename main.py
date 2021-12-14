@@ -56,8 +56,8 @@ posicao_gasolinax = randint(0, largura - 40)
 posicao_gasolinay = randint(0, altura - 40)
 
 # Posição aleatória meteoro
-posicao_meteoroz = randint(0, largura - 40)
-posicao_meteoroh = randint(0, largura - 40)
+posicao_meteorox = randint(0, largura - 40)
+posicao_meteoroy = randint(0, largura - 40)
 
 # Fonte das mensagens na telaa
 fonte = pygame.font.SysFont("Arial", 30, True, True)
@@ -133,8 +133,8 @@ while True:
     tela.blit(gasolina, (posicao_gasolinax, posicao_gasolinay))
 
     # Criar um retângulo no meteoro para colidir
-    ret_meteoro = pygame.draw.rect(s, (100, 100, 255), (posicao_meteoroz, posicao_meteoroh, 50, 50))
-    tela.blit(meteoro, (posicao_meteoroz, posicao_meteoroh))
+    ret_meteoro = pygame.draw.rect(s, (100, 100, 255), (posicao_meteorox, posicao_meteoroy, 50, 50))
+    tela.blit(meteoro, (posicao_meteorox, posicao_meteoroy))
 
     if ret_player.colliderect(ret_gasolina):
         # Barulho quando colidir
@@ -149,8 +149,8 @@ while True:
         # Barulho quando colidir
         barulho_colisao.play()
         # Recriar o objeto em uma posição aleatoria dentro da tela
-        posicao_meteoroz = randint(0, largura - 40)
-        posicao_meteoroh = randint(0, altura - 40)
+        posicao_meteorox = randint(0, largura - 40)
+        posicao_meteoroy = randint(0, altura - 40)
         # Quando o meteoro bater na nave
         tempo_total -= 5
 
