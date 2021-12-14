@@ -52,12 +52,12 @@ y = 0
 relogio = pygame.time.Clock()
 
 # Posição aleátoria gasolina
-position_x = randint(0, largura-40)
-position_y = randint(0, altura-40)
+posicao_gasolinax = randint(0, largura - 40)
+posicao_gasolinay = randint(0, altura - 40)
 
 # Posição aleatória meteoro
-position_z = randint(0, largura-40)
-position_h = randint(0, largura-40)
+posicao_meteoroz = randint(0, largura - 40)
+posicao_meteoroh = randint(0, largura - 40)
 
 # Fonte das mensagens na telaa
 fonte = pygame.font.SysFont("Arial", 30, True, True)
@@ -129,19 +129,19 @@ while True:
     pontuacao += 1
 
     # Quadrado de colisão e imagem da gasolina
-    ret_gasolina = pygame.draw.rect(s, (100, 100, 255), (position_x, position_y, 50, 50))
-    tela.blit(gasolina, (position_x, position_y))
+    ret_gasolina = pygame.draw.rect(s, (100, 100, 255), (posicao_gasolinax, posicao_gasolinay, 50, 50))
+    tela.blit(gasolina, (posicao_gasolinax, posicao_gasolinay))
 
     # Criar um retângulo no meteoro para colidir
-    ret_meteoro = pygame.draw.rect(s, (100, 100, 255), (position_z, position_h, 50, 50))
-    tela.blit(meteoro, (position_z, position_h))
+    ret_meteoro = pygame.draw.rect(s, (100, 100, 255), (posicao_meteoroz, posicao_meteoroh, 50, 50))
+    tela.blit(meteoro, (posicao_meteoroz, posicao_meteoroh))
 
     if ret_player.colliderect(ret_gasolina):
         # Barulho quando colidir
         barulho_colisao.play()
         # Recriar o objeto em uma posição aleatoria dentro da tela
-        position_x = randint(0, largura-40)
-        position_y = randint(0, altura-40)
+        posicao_gasolinax = randint(0, largura - 40)
+        posicao_gasolinay = randint(0, altura - 40)
         # Quando pegar a gasolina ganha + 500 pontos
         pontuacao += 500
 
@@ -149,8 +149,8 @@ while True:
         # Barulho quando colidir
         barulho_colisao.play()
         # Recriar o objeto em uma posição aleatoria dentro da tela
-        position_z = randint(0, largura - 40)
-        position_h = randint(0, altura - 40)
+        posicao_meteoroz = randint(0, largura - 40)
+        posicao_meteoroh = randint(0, altura - 40)
         # Quando o meteoro bater na nave
         tempo_total -= 5
 
