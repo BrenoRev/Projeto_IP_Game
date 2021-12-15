@@ -26,8 +26,14 @@ nave = pygame.transform.scale(pygame.image.load("images/sprite_nave.png"), (100,
 # Background
 img = pygame.transform.scale(pygame.image.load("images/background.jpg"), (largura, altura))
 
-# Imagem da gasolina
+# Imagem da gasolina1
 gasolina = pygame.transform.scale(pygame.image.load("images/gasolina.png"), (50, 50))
+
+# Imagem da gasolina2
+gasolina2 = pygame.transform.scale(pygame.image.load("images/gasolina.png"), (50, 50))
+
+# Imagem da gasolina3
+gasolina3 = pygame.transform.scale(pygame.image.load("images/gasolina.png"), (50, 50))
 
 # Altura e largura da tela
 tela = pygame.display.set_mode((largura, altura))
@@ -39,8 +45,14 @@ pygame.display.set_icon(icone)
 # Nome da  tela
 pygame.display.set_caption("A Viagem Espacial de Calegário")
 
-#Imagem do meteoro
+#Imagem do meteoro1
 meteoro = pygame.transform.scale(pygame.image.load("images/foto_meteoro1.png"), (50,50))
+
+#Imagem do meteoro2
+meteoro2 = pygame.transform.scale(pygame.image.load("images/foto_meteoro1.png"), (70,70))
+
+#Imagem do meteoro3
+meteoro3 = pygame.transform.scale(pygame.image.load("images/foto_meteoro1.png"), (100,100))
 
 # Pontuação inicial
 pontuacao = 0
@@ -52,19 +64,36 @@ y = altura-100
 # Quantidade de gasolina pega
 get_gasolina = 0
 
+
 # Quantidade de meteoros esquivados
 noGet_meteoro = 0
 
 # Relogio de tempo
 relogio = pygame.time.Clock()
 
-# Posição aleátoria gasolina
+# Posição aleátoria gasolina 1
 posicao_gasolinax = randint(0, largura - 40)
 posicao_gasolinay = 0   #randint(0, altura - 40)
 
-# Posição aleatória meteoro
+# Posição aleátoria gasolina 2
+posicao_gasolinax2 = randint(0, largura - 40)
+posicao_gasolinay2 = 0   #randint(0, altura - 40)
+
+# Posição aleátoria gasolina 3
+posicao_gasolinax3 = randint(0, largura - 40)
+posicao_gasolinay3 = 0   #randint(0, altura - 40)
+
+# Posição aleatória meteoro 1
 posicao_meteorox = randint(0, largura - 40)
 posicao_meteoroy = 0 #randint(0, largura - 40)
+
+# Posição aleatória meteoro 2
+posicao_meteorox2 = randint(0, largura - 70)
+posicao_meteoroy2 = 0 #randint(0, largura - 40)
+
+# Posição aleatória meteoro 3
+posicao_meteorox3 = randint(0, largura - 100)
+posicao_meteoroy3 = 0 #randint(0, largura - 40)
 
 # Fonte das mensagens na telaa
 fonte = pygame.font.SysFont("Arial", 30, True, True)
@@ -74,7 +103,7 @@ while True:
     tela.blit(img, (0, 0))
 
     # 30 segundos de tempo ao total
-    tempo_total = (50000 / 1000)
+    tempo_total = (300000 / 1000)
 
     # Tirar 1 segundo a cada segundo
     tempo_total -= (pygame.time.get_ticks() / 1000)
@@ -89,9 +118,19 @@ while True:
     # Fazer o meteoro e a gasolina descer
     posicao_gasolinay +=1
     posicao_meteoroy+= 1
+    posicao_gasolinay2 +=1
+    posicao_meteoroy2+=1.3
+    posicao_gasolinay3+=1
+    posicao_meteoroy3 += 1.6
+
+    if get_gasolina >= 3:
+        get_gasolina = 3
 
     # Aumentar a velocidade da gasolina toda vez que é pega
     posicao_gasolinay += get_gasolina
+    posicao_gasolinay2 += get_gasolina
+    posicao_gasolinay3 += get_gasolina
+
 
     # Mensagem na tela do tempo
     mensagem = f'Tempo: {int(tempo_total)}'
@@ -147,12 +186,21 @@ while True:
     ret_gasolina = pygame.draw.rect(s, (100, 100, 255), (posicao_gasolinax, posicao_gasolinay, 50, 50))
     tela.blit(gasolina, (posicao_gasolinax, posicao_gasolinay))
 
+    ret_gasolina2 = pygame.draw.rect(s, (100, 100, 255), (posicao_gasolinax2, posicao_gasolinay2, 50, 50))
+    tela.blit(gasolina2, (posicao_gasolinax2, posicao_gasolinay2))
+
+    ret_gasolina3 = pygame.draw.rect(s, (100, 100, 255), (posicao_gasolinax3, posicao_gasolinay3, 50, 50))
+    tela.blit(gasolina3, (posicao_gasolinax3, posicao_gasolinay3))
+
     # Criar um retângulo no meteoro para colidir
     ret_meteoro = pygame.draw.rect(s, (100, 100, 255), (posicao_meteorox, posicao_meteoroy, 50, 50))
     tela.blit(meteoro, (posicao_meteorox, posicao_meteoroy))
 
-    ret_meteoro = pygame.draw.rect(s, (100, 100, 255), (posicao_meteorox, posicao_meteoroy, 50, 50))
-    tela.blit(meteoro, (posicao_meteorox, posicao_meteoroy))
+    ret_meteoro2 = pygame.draw.rect(s, (100, 100, 255), (posicao_meteorox2, posicao_meteoroy2, 70, 70))
+    tela.blit(meteoro2, (posicao_meteorox2, posicao_meteoroy2))
+
+    ret_meteoro3 = pygame.draw.rect(s, (100, 100, 255), (posicao_meteorox3, posicao_meteoroy3, 100, 100))
+    tela.blit(meteoro3, (posicao_meteorox3, posicao_meteoroy3))
 
     # Colidir com a gasolina
 
@@ -167,6 +215,7 @@ while True:
         # Aumentar a velocidade da gasolina em 0.2
         get_gasolina+=0.2
 
+
     if ret_player.colliderect(ret_meteoro):
         # Barulho quando colidir
         barulho_colisao.play()
@@ -176,6 +225,46 @@ while True:
         # Quando o meteoro bater na nave
         quit()
 
+    if ret_player.colliderect(ret_gasolina2):
+        # Barulho quando colidir
+        barulho_colisao.play()
+        # Recriar o objeto em uma posição aleatoria dentro da tela
+        posicao_gasolinax2 = randint(0, altura - 40)
+        posicao_gasolinay2 = 0
+        # Quando pegar a gasolina ganha + 50 pontos
+        pontuacao += 50
+        # Aumentar a velocidade da gasolina em 0.2
+        get_gasolina += 0.2
+
+
+    if ret_player.colliderect(ret_meteoro2):
+        # Barulho quando colidir
+        barulho_colisao.play()
+        # Recriar o objeto em uma posição aleatoria dentro da tela
+        posicao_meteorox2 = randint(0, largura - 40)
+        posicao_meteoroy2 = randint(0, altura - 40)
+        # Quando o meteoro bater na nave
+        quit()
+
+    if ret_player.colliderect(ret_gasolina3):
+        # Barulho quando colidir
+        barulho_colisao.play()
+        # Recriar o objeto em uma posição aleatoria dentro da tela
+        posicao_gasolinax3 = randint(0, altura - 40)
+        posicao_gasolinay3 = 0
+        # Quando pegar a gasolina ganha + 50 pontos
+        pontuacao += 50
+        # Aumentar a velocidade da gasolina em 0.2
+        get_gasolina += 0.2
+
+    if ret_player.colliderect(ret_meteoro3):
+        # Barulho quando colidir
+        barulho_colisao.play()
+        # Recriar o objeto em uma posição aleatoria dentro da tela
+        posicao_meteorox3 = randint(0, largura - 40)
+        posicao_meteoroy3 = randint(0, altura - 40)
+        # Quando o meteoro bater na nave
+        quit()
 
         # Se sair da tela voltar ao início
     if posicao_meteoroy >= altura-40:
@@ -184,9 +273,24 @@ while True:
     if posicao_gasolinay >= altura-40:
         posicao_gasolinay = 0
         posicao_gasolinax = randint(0, largura - 40)
+        pontuacao -= (20 if pontuacao>=20 else 0)
+    if posicao_meteoroy2 >= altura - 40:
+        posicao_meteoroy2 = 0
+        posicao_meteorox2 = randint(0, largura - 40)
+    if posicao_gasolinay2 >= altura - 40:
+       posicao_gasolinay2 = 0
+       posicao_gasolinax2 = randint(0, largura - 40)
+       pontuacao -= (20 if pontuacao>=20 else 0)
+    if posicao_meteoroy3 >= altura - 40:
+        posicao_meteoroy3 = 0
+        posicao_meteorox3 = randint(0, largura - 40)
+    if posicao_gasolinay3 >= altura - 40:
+        posicao_gasolinay3 = 0
+        posicao_gasolinax3 = randint(0, largura - 40)
+        pontuacao -= (20 if pontuacao>=20 else 0)
 
 
-        # Aparecer a pontuação e o tempo na tela
+    # Aparecer a pontuação e o tempo na tela
     tela.blit(pontuacao_formatada, (largura-300, 40))
     tela.blit(texto_formatado, (largura-200, 0))
 
