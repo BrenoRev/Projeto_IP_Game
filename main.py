@@ -10,11 +10,11 @@ pygame.init()
 # Música de Fundo
 pygame.mixer.music.set_volume(0.3) 
 # Tocar
-musica_de_fundo = pygame.mixer.music.load('musics/musica_de_fundo.mp3')
+musica_de_fundo = pygame.mixer.music.load('musics/fofolete_do_cao.mp3')
 # Não parar de tocar a música
 pygame.mixer.music.play(-1)
 # Barulho da colisão
-barulho_colisao = pygame.mixer.Sound('musics/colisao.wav')
+barulho_colisao = pygame.mixer.Sound('musics/ganhar.wav')
 
 # Tamanho da tela
 largura = 1024
