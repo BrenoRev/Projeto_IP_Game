@@ -5,6 +5,7 @@ from random import randint
 from Video import *
 from Sons import *
 from Nave import *
+from Gasolina import *
 
 # Inicialização do jogo
 pygame.mixer.init()
@@ -32,18 +33,14 @@ sons.musica_fundo()
 # Nave
 nave = Nave()
 
-
 # Background
-img = pygame.transform.scale(pygame.image.load("images/background.jpg"), (largura, altura))
+background = pygame.transform.scale(pygame.image.load("images/background.jpg"), (largura, altura))
 
-# Imagem da gasolina1
-gasolina = pygame.transform.scale(pygame.image.load("images/gasolina.png"), (50, 50))
+# Gasolina
 
-# Imagem da gasolina2
-gasolina2 = pygame.transform.scale(pygame.image.load("images/gasolina.png"), (50, 50))
-
-# Imagem da gasolina3
-gasolina3 = pygame.transform.scale(pygame.image.load("images/gasolina.png"), (50, 50))
+gasolina = Gasolina()
+gasolina2 = Gasolina()
+gasolina3 = Gasolina()
 
 # Altura e largura da tela
 tela = pygame.display.set_mode((largura, altura))
@@ -103,7 +100,7 @@ fonte = pygame.font.SysFont("Arial", 30, True, True)
 
 while True:
     # Carregar background
-    tela.blit(img, (0, 0))
+    tela.blit(background, (0, 0))
 
     # 30 segundos de tempo ao total
     tempo_total = (300000 / 1000)
@@ -187,13 +184,13 @@ while True:
 
     # Quadrado de colisão e imagem da gasolina
     ret_gasolina = pygame.draw.rect(s, (100, 100, 255), (posicao_gasolinax, posicao_gasolinay, 50, 50))
-    tela.blit(gasolina, (posicao_gasolinax, posicao_gasolinay))
+    tela.blit(gasolina.image, (posicao_gasolinax, posicao_gasolinay))
 
     ret_gasolina2 = pygame.draw.rect(s, (100, 100, 255), (posicao_gasolinax2, posicao_gasolinay2, 50, 50))
-    tela.blit(gasolina2, (posicao_gasolinax2, posicao_gasolinay2))
+    tela.blit(gasolina2.image, (posicao_gasolinax2, posicao_gasolinay2))
 
     ret_gasolina3 = pygame.draw.rect(s, (100, 100, 255), (posicao_gasolinax3, posicao_gasolinay3, 50, 50))
-    tela.blit(gasolina3, (posicao_gasolinax3, posicao_gasolinay3))
+    tela.blit(gasolina3.image, (posicao_gasolinax3, posicao_gasolinay3))
 
     # Criar um retângulo no meteoro para colidir
     ret_meteoro = pygame.draw.rect(s, (100, 100, 255), (posicao_meteorox, posicao_meteoroy, 50, 50))
