@@ -3,7 +3,6 @@ import pygame
 
 class Video:
     def play(self):
-
         # Tocar música de introdução star wars
         musica_introducao = pygame.mixer.music.load('musics/Star_Wars.mp3')
         pygame.mixer.music.play(-1)

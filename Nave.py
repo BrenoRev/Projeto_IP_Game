@@ -7,8 +7,13 @@ class Nave():
         self.rect.centery = 100
         self.position = [0,0]
 
-    def update(self, x, y):
+    def move(self, x=0):
+        if self.position[0] <= 30:
+            self.position[0]+=30
+        if self.position[0] >= 924:
+             self.position[0]-=30
         self.position[0] += x
-        self.position[1] += y
         self.rect.centerx = self.position[0]
-        self.rect.centery = self.position[1]
+
+    def render(self, tela):
+        tela.blit(self.image, (self.position[0], self.position[1]))
