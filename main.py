@@ -6,6 +6,7 @@ from Video import *
 from Sons import *
 from Nave import *
 from Gasolina import *
+from Meteoro import *
 
 # Inicialização do jogo
 pygame.mixer.init()
@@ -22,6 +23,9 @@ pygame.display.set_caption("A Viagem Espacial de Calegário")
 largura = 1024
 altura = 720
 
+# Altura e largura da tela
+tela = pygame.display.set_mode((largura, altura))
+
 # Video
 video = Video()
 video.play()
@@ -37,22 +41,15 @@ nave = Nave()
 background = pygame.transform.scale(pygame.image.load("images/background.jpg"), (largura, altura))
 
 # Gasolina
-
 gasolina = Gasolina()
 gasolina2 = Gasolina()
 gasolina3 = Gasolina()
 
-# Altura e largura da tela
-tela = pygame.display.set_mode((largura, altura))
 
-#Imagem do meteoro1
-meteoro = pygame.transform.scale(pygame.image.load("images/foto_meteoro1.png"), (50,50))
-
-#Imagem do meteoro2
-meteoro2 = pygame.transform.scale(pygame.image.load("images/foto_meteoro1.png"), (70,70))
-
-#Imagem do meteoro3
-meteoro3 = pygame.transform.scale(pygame.image.load("images/foto_meteoro1.png"), (100,100))
+# Meteoro
+meteoro = Meteoro(50,50)
+meteoro2 = Meteoro(70,70)
+meteoro3 = Meteoro(100,100)
 
 # Pontuação inicial
 pontuacao = 0
@@ -194,13 +191,13 @@ while True:
 
     # Criar um retângulo no meteoro para colidir
     ret_meteoro = pygame.draw.rect(s, (100, 100, 255), (posicao_meteorox, posicao_meteoroy, 50, 50))
-    tela.blit(meteoro, (posicao_meteorox, posicao_meteoroy))
+    tela.blit(meteoro.image, (posicao_meteorox, posicao_meteoroy))
 
     ret_meteoro2 = pygame.draw.rect(s, (100, 100, 255), (posicao_meteorox2, posicao_meteoroy2, 70, 70))
-    tela.blit(meteoro2, (posicao_meteorox2, posicao_meteoroy2))
+    tela.blit(meteoro2.image, (posicao_meteorox2, posicao_meteoroy2))
 
     ret_meteoro3 = pygame.draw.rect(s, (100, 100, 255), (posicao_meteorox3, posicao_meteoroy3, 100, 100))
-    tela.blit(meteoro3, (posicao_meteorox3, posicao_meteoroy3))
+    tela.blit(meteoro3.image, (posicao_meteorox3, posicao_meteoroy3))
 
     # Colidir com a gasolina
 
