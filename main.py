@@ -4,6 +4,7 @@ from sys import exit
 from random import randint
 from Video import *
 from Sons import *
+from Nave import *
 
 # Inicialização do jogo
 pygame.mixer.init()
@@ -28,8 +29,9 @@ video.play()
 sons = Sons()
 sons.musica_fundo()
 
-# A nave com 100x100 px
-nave = pygame.transform.scale(pygame.image.load("images/sprite_nave.png"), (100, 100))
+# Nave
+nave = Nave()
+
 
 # Background
 img = pygame.transform.scale(pygame.image.load("images/background.jpg"), (largura, altura))
@@ -178,7 +180,7 @@ while True:
 
     # Colocar a nave e o fundo na tela
     tela.blit(s, (0, 0))
-    tela.blit(nave, (x, y))
+    tela.blit(nave.image, (x, y))
 
     # Criar um retângulo na nave para colidir
     ret_player = pygame.draw.rect(s, (0, 0, 0), (x, y, 100, 100))
