@@ -1,0 +1,16 @@
+import pygame
+
+class Start():
+    def startGame(self):
+        self.icone = pygame.image.load("images/icon.jpg")
+        pygame.display.set_icon(self.icone)
+
+        # Nome da  tela
+        pygame.display.set_caption("A Viagem Espacial de Calegário")
+
+        # Tamanho da tela
+        self.largura = 1024
+        self.altura = 720
+
+        # Altura e largura da tela
+        self.tela = pygame.display.set_mode((self.largura, self.altura))
