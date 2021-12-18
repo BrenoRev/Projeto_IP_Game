@@ -3,14 +3,11 @@ from pygame.locals import *
 from sys import exit
 from random import randint
 import cv2
+from Video import *
 
 # Inicialização do jogo
 pygame.mixer.init()
 pygame.init()
-
-# Tocar música de introdução star wars
-musica_introducao = pygame.mixer.music.load('musics/Star_Wars.mp3')
-pygame.mixer.music.play(-1)
 
 # Icone da janela
 icone = pygame.image.load("images/icon.jpg")
@@ -19,48 +16,12 @@ pygame.display.set_icon(icone)
 # Nome da  tela
 pygame.display.set_caption("A Viagem Espacial de Calegário")
 
-# Música de Fundo
-pygame.mixer.music.set_volume(0.1)
-# Video
-video = cv2.VideoCapture("Video/Introduction.mp4")
-success, video_image = video.read()
-fps = video.get(cv2.CAP_PROP_FPS)
-
-window = pygame.display.set_mode(video_image.shape[1::-1])
-clock = pygame.time.Clock()
-
-run = success
-while run:
-
-    clock.tick(fps)
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            run = False
-
-    success, video_image = video.read()
-    if success:
-        video_surf = pygame.image.frombuffer(
-            video_image.tobytes(), video_image.shape[1::-1], "BGR")
-    else:
-        run = False
-    window.blit(video_surf, (0, 0))
-    pygame.display.flip()
-
-# Stop musics
-pygame.mixer.music.stop()
-
-# Tocar
-musica_de_fundo = pygame.mixer.music.load('musics/fofolete_do_cao.mp3')
-# Não parar de tocar a música
-pygame.mixer.music.play(-1)
-# Barulho da colisão
-barulho_colisao = pygame.mixer.Sound('musics/ganhar.wav')
-
-lose_gasolina = pygame.mixer.Sound('musics/lose_gasolina.wav')
-
 # Tamanho da tela
 largura = 1024
 altura = 720
+
+video = Video()
+video.play()
 
 # A nave com 100x100 px
 nave = pygame.transform.scale(pygame.image.load("images/sprite_nave.png"), (100, 100))

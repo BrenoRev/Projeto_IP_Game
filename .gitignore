@@ -8,7 +8,11 @@ __pycache__/
 *.include
 # C extensions
 *.so
-
+*./share
+*.share
+*./share/
+*share
+share
 # Test
 .Python
 [Bb]in
