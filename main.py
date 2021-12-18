@@ -2,8 +2,8 @@ import pygame
 from pygame.locals import *
 from sys import exit
 from random import randint
-import cv2
 from Video import *
+from Sons import *
 
 # Inicialização do jogo
 pygame.mixer.init()
@@ -20,8 +20,13 @@ pygame.display.set_caption("A Viagem Espacial de Calegário")
 largura = 1024
 altura = 720
 
+# Video
 video = Video()
 video.play()
+
+# Sons
+sons = Sons()
+sons.musica_fundo()
 
 # A nave com 100x100 px
 nave = pygame.transform.scale(pygame.image.load("images/sprite_nave.png"), (100, 100))
