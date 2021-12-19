@@ -3,8 +3,6 @@ class Nave():
     def __init__(self):
         self.image = pygame.transform.scale(pygame.image.load("images/sprite_nave.png"), (100, 100))
         self.rect = self.image.get_rect()
-        self.rect.centerx = 100
-        self.rect.centery = 100
         self.position = [0,0]
 
     def move(self, x=0):
@@ -17,3 +15,6 @@ class Nave():
 
     def render(self, tela):
         tela.blit(self.image, (self.position[0], self.position[1]))
+
+    def object(self, surface):
+        return pygame.draw.rect(surface, (255, 0, 0), (self.position[0], self.position[1], 100, 100))

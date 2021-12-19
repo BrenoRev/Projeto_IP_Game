@@ -12,8 +12,12 @@ from Background import *
 pygame.mixer.init()
 pygame.init()
 
+# Background
+background = Background()
+
 # Startar o jogo
 startGame = Start()
+surface = background.createSurface()
 
 # Video
 video = Video()
@@ -22,22 +26,17 @@ video.play()
 # Sons
 sons = Sons()
 sons.musica_fundo()
+pygame.mixer.music.play(-1)
 
 # Nave
 nave = Nave()
 
-# Background
-background = Background()
-
-# Gasolina
-gasolina = Gasolina()
-gasolina2 = Gasolina()
-gasolina3 = Gasolina()
-
-# Meteoro
+# Meteoros
 meteoro = Meteoro(50)
 meteoro2 = Meteoro(70)
 meteoro3 = Meteoro(100)
+# Gasolina
+gasolina = Gasolina()
 
 # Pontuação inicial
 pontos = 0
@@ -54,16 +53,13 @@ while True:
     startGame.tela.blit(background.image, (0, 0))
 
     # Carrega os objetos na tela
-
     nave.render(startGame.tela)
-
-    gasolina.render(startGame.tela)
-    gasolina2.render(startGame.tela)
-    gasolina3.render(startGame.tela)
 
     meteoro.render(startGame.tela)
     meteoro2.render(startGame.tela)
     meteoro3.render(startGame.tela)
+
+    gasolina.render(startGame.tela)
 
     # 30 segundos de tempo ao total
     tempo_total = (300)
@@ -80,8 +76,6 @@ while True:
 
     # Fazer a gasolina descer
     gasolina.moveGasolina()
-    gasolina2.moveGasolina()
-    gasolina3.moveGasolina()
 
     # Fazer o meteoro descer
     meteoro.moveMeteoro(1)
@@ -110,10 +104,25 @@ while True:
         if pygame.key.get_pressed()[K_d]:
             nave.move(30)
 
+    # Objetos de colisão
+    colisao_meteoro = [meteoro.object(surface), meteoro2.object(surface), meteoro3.object(surface)]
+    colisao_gasolina = gasolina.object(surface)
+    nave_colide = nave.object(surface)
+    startGame.tela.blit(surface, (0, 0))
+
+    if nave_colide.colliderect(colisao_gasolina):
+        pontos+=500
+        sons.get_gasolina().play()
+        gasolina.upVelocidade()
+        gasolina.reset()
+
+    if nave_colide.collidelistall(colisao_meteoro):
+        sons.barulho_colisao().play()
+        # Implementação da lógica da HUD
+        quit()
+
     # Verifica se saiu da tela
     gasolina.outWindow()
-    gasolina2.outWindow()
-    gasolina3.outWindow()
 
     meteoro.outWindow()
     meteoro2.outWindow()
