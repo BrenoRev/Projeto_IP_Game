@@ -7,6 +7,7 @@ from Gasolina import *
 from Meteoro import *
 from Start import *
 from Background import *
+from Sabredeluz import  *
 
 # Inicialização do jogo
 pygame.mixer.init()
@@ -37,6 +38,8 @@ meteoro2 = Meteoro(70)
 meteoro3 = Meteoro(100)
 # Gasolina
 gasolina = Gasolina()
+# Sabre de Luz
+sabredeluz = Sabredeluz()
 
 # Pontuação inicial
 pontos = 0
@@ -61,6 +64,8 @@ while True:
 
     gasolina.render(startGame.tela)
 
+    sabredeluz.render(startGame.tela)
+
     # 30 segundos de tempo ao total
     tempo_total = (300)
 
@@ -76,6 +81,9 @@ while True:
 
     # Fazer a gasolina descer
     gasolina.moveGasolina()
+
+    # Fazer o Sabre descer
+    sabredeluz.movesabre()
 
     # Fazer o meteoro descer
     meteoro.moveMeteoro(1)
@@ -107,6 +115,7 @@ while True:
     # Objetos de colisão
     colisao_meteoro = [meteoro.object(surface), meteoro2.object(surface), meteoro3.object(surface)]
     colisao_gasolina = gasolina.object(surface)
+    colisao_sabre = sabredeluz.object(surface)
     nave_colide = nave.object(surface)
     startGame.tela.blit(surface, (0, 0))
 
@@ -116,6 +125,13 @@ while True:
         gasolina.upVelocidade()
         gasolina.reset()
 
+    if nave_colide.colliderect(colisao_sabre):
+        if pontos>=100:
+            pontos-=100
+        sons.tocar_sabre().play()
+        gasolina.upVelocidade()
+        sabredeluz.reset()
+
     if nave_colide.collidelistall(colisao_meteoro):
         sons.barulho_colisao().play()
         # Implementação da lógica da HUD
@@ -123,6 +139,8 @@ while True:
 
     # Verifica se saiu da tela
     gasolina.outWindow()
+
+    sabredeluz.outWindow()
 
     meteoro.outWindow()
     meteoro2.outWindow()
