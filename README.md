@@ -8,15 +8,26 @@
 
 <hr>
 
-<h3>A organização do código</h3>
-<p>   O projeto foi organizado seguindo os padrões de projetos propostos pela Orientação a Objetos ( POO )
+<h3>A organização do código ⚓</h3>
+<p>  &emsp; O projeto foi organizado seguindo os padrões de projetos propostos pela Orientação a Objetos ( POO ).
 A programação orientada a objetos propõe uma representação mais fácil de ser compreendida, pois a relação de cada elemento em termos de um objeto, ou classe, pode ser comparado ao mundo real.
 Outro benefício da POO é a reutilização de código. Com a complexidade dos sistemas cada vez mais ampla, o tempo de desenvolvimento iria aumentar absurdamente, caso não fosse possível a reutilização.
   
 <hr>
 
 <h3> Como rodar o projeto? 👷 </h3>
-#
+➡️ Faça um clone do projeto utilizando " git clone https://github.com/BrenoRev/Projeto_IP_Game.git "
+<br>
+➡️ Abra o terminal na pasta do projeto e digite " pip install -r requirements.txt "
+<br>
+➡️ Importe o projeto para a IDE do pycharm
+<br>
+➡️ Crie seu env ( ambiente virtual do python )
+<br>
+➡️ Inicie o jogo.
+<br>
+⚠️ <b>[ Em casos de bug de importação das libs, instale a biblioteca pygame e cv2-extras pelo interpretador ]</b>
+
 
 <hr>
 
@@ -29,12 +40,12 @@ Outro benefício da POO é a reutilização de código. Com a complexidade dos s
         </ul>
  <hr>
  
- <h3> Divisão do trabalho </h3>
+ <h3> Divisão do trabalho :atom:</h3>
  #
  
  <hr>
  
- <h3> Conceitos aprendidos </h3>
+ <h3> Conceitos aprendidos 📖</h3>
  #
  
  <hr>
