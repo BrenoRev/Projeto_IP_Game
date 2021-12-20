@@ -72,7 +72,7 @@ while True:
 
     sabredeluz.render(startGame.tela)
 
-    # 130 segundos de tempo ao total
+    # 110 segundos de tempo ao total
     tempo_total = 110
 
     # Tirar 1 segundo a cada segundo
