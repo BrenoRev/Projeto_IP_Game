@@ -1,6 +1,6 @@
 import pygame
 
-class Start():
+class Start:
 
     def __init__(self):
         self.icone = pygame.image.load("images/icon.jpg")
@@ -17,4 +17,3 @@ class Start():
         self.tela = pygame.display.set_mode((self.largura, self.altura))
 
         self.fonte = pygame.font.SysFont("Arial", 30, True, True)
-
