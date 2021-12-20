@@ -48,13 +48,13 @@ class Hud:
 
     def gameOver(self, pontos):
         startGame = Start()
-<<<<<<< HEAD
+
         fonte3 = pygame.font.SysFont('arial', 25, True, True)
         mensagem = f"VOCÊ PONTUOU {pontos}, PARABÉNS"
-=======
+
         fonte3 = pygame.font.SysFont('arial', 40, True, True)
         mensagem = f"VOCÊ PONTUOU {pontos} PONTOS, PARABÉNS!"
->>>>>>> 55348b9b1ec3b259ac4e08f4254188b52b961aa8
+
         texto_formatado = fonte3.render(mensagem, True, (255, 255, 255))
         ret_texto = texto_formatado.get_rect()
         ret_texto.center = (512, 360)
