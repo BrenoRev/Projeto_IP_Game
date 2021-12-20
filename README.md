@@ -41,14 +41,30 @@ Outro benefício da POO é a reutilização de código. Com a complexidade dos s
  <hr>
  
  <h3> Divisão do trabalho :atom:</h3>
- #
+ 🔳 Breno Silva - Modularização do Código e Gerenciamento do Projeto
+ <br>
+ 🔳 Robbert Miller - Criação e Alteração das Classes
+ <br>
+ 🔳 João Henrique - Criação e Alteração das Classes / Sons e Edições
+  <br>
+ 🔳 João Nobrega - Criação e Alteração das Classes / Interface Gráfica
+  <br>
+ 🔳 Breno Ramos - Interface Gráfica e Edições
+  <br>
+ 🔳 Igor Rafael - Interface Gráfica e Edições
  
  <hr>
  
  <h3> Conceitos aprendidos 📖</h3>
- #
+ &emsp;Foram aprendidos os conceitos de orientação a objetos, tais como, por exemplo, polimofirsmo, herança, encapsulamento, construtores e classes.
+ Também foi aprimorado as habilidades básicas de programação, ex: listas, tuplas, lógica, algoritmo e o mais importante, habilidade de trabalhar em grupo.
  
  <hr>
  <h3> Desafios 🥇 </h3>
- #
+ Os desáfios do projeto foram:  
+  <br> ➡️ &emsp; Modularizar o código;
+  <br> ➡️ &emsp; Achar tempo para organizar o que ainda deve ser feito
+  <br> ➡️ &emsp; Aprender orientação a objetos aplicada ao Pygame
+  <br> ➡️ &emsp; Trabalhar com o repositório Git em grupo
+  
  <hr>
