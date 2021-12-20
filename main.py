@@ -59,6 +59,7 @@ while True:
     # Carregar background
     startGame.tela.blit(background.image, (0, 0))
 
+
     # Carrega os objetos na tela
     nave.render(startGame.tela)
 
@@ -143,7 +144,6 @@ while True:
             meteoro2.resetar()
             meteoro3.resetar()
             pontos = 0
-            tempo_total = 0
 
     if tempo_total <= 0:
         pygame.mixer.music.stop()

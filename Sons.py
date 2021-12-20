@@ -8,7 +8,7 @@ class Sons:
         return pygame.mixer.Sound('musics/colisao.wav')
 
     def tocar_sabre(self):
-        return pygame.mixer.Sound('musics/lose_gasolina.wav')
+        return pygame.mixer.Sound('musics/touch_sabre.wav')
 
     def get_gasolina(self):
         return pygame.mixer.Sound('musics/ganhar.wav')
