@@ -34,4 +34,4 @@ class Sabredeluz():
 
     def position(self):
         self.posicao_sabrex = randint(0, self.largura - 40)
-        self.posicao_sabrey = randint(0, 1000) * -1
+        self.posicao_sabrey = randint(0, 600) * -1

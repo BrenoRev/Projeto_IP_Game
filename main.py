@@ -1,13 +1,13 @@
-from pygame import *
 from sys import exit
-from Video import *
-from Sons import *
-from Nave import *
-from Gasolina import *
-from Meteoro import *
-from Start import *
+from pygame import *
 from Background import *
-from Sabredeluz import  *
+from Gasolina import *
+from Hud import *
+from Meteoro import *
+from Nave import *
+from Sabredeluz import *
+from Sons import *
+from Video import *
 
 # Inicialização do jogo
 pygame.mixer.init()
@@ -43,13 +43,17 @@ sabredeluz = Sabredeluz()
 
 # Pontuação inicial
 pontos = 0
+pontosShow = 0
 
 # Posição do spawn da nave
-nave.position[0] = startGame.largura/2
-nave.position[1] = startGame.altura-100
+nave.position[0] = startGame.largura / 2
+nave.position[1] = startGame.altura - 100
 
 # Relogio de tempo
 relogio = pygame.time.Clock()
+
+# HUD
+hud = Hud()
 
 while True:
     # Carregar background
@@ -66,18 +70,14 @@ while True:
 
     sabredeluz.render(startGame.tela)
 
-    # 30 segundos de tempo ao total
-    tempo_total = (300)
+    # 360 segundos de tempo ao total
+    tempo_total = 363
 
     # Tirar 1 segundo a cada segundo
-    tempo_total -= (pygame.time.get_ticks()/1000)
+    tempo_total -= (pygame.time.get_ticks() / 1000)
 
     # FPS
     relogio.tick(60)
-
-    # Se o tempo chegar até 0, perdeu
-    if tempo_total <= 0:
-        quit()
 
     # Fazer a gasolina descer
     gasolina.moveGasolina()
@@ -90,7 +90,6 @@ while True:
     meteoro2.moveMeteoro(1.3)
     meteoro3.moveMeteoro(1.6)
 
-    print(sabredeluz.posicao_sabrex)
     # Mensagem na tela do tempo
     time = f'Tempo: {int(tempo_total)}'
     tempo = startGame.fonte.render(time, False, (255, 255, 255))
@@ -98,7 +97,6 @@ while True:
     # Mensagem na tela da pontuação
     points = f'Pontuacao: {int(pontos)}'
     pontuacao = startGame.fonte.render(points, False, (255, 255, 255))
-
 
     for event in pygame.event.get():
         # Evento de fechar o jogo
@@ -121,22 +119,36 @@ while True:
     startGame.tela.blit(surface, (0, 0))
 
     if nave_colide.colliderect(colisao_gasolina):
-        pontos+=500
+        pontos += 500
+        pontosShow += 500
         sons.get_gasolina().play()
         gasolina.upVelocidade()
         gasolina.reset()
 
     if nave_colide.colliderect(colisao_sabre):
-        if pontos>=100:
-            pontos-=100
         sons.tocar_sabre().play()
-        gasolina.upVelocidade()
+        if pontos >= 100:
+            pontosShow -= 100
+            pontos -= 100
+        sabredeluz.upVelocidade()
         sabredeluz.reset()
 
     if nave_colide.collidelistall(colisao_meteoro):
         sons.barulho_colisao().play()
         # Implementação da lógica da HUD
-        quit()
+        if hud.start():
+            gasolina.position()
+            sabredeluz.reset()
+            meteoro.resetar()
+            meteoro2.resetar()
+            meteoro3.resetar()
+            pontos = 0
+            tempo_total = 0
+
+    if tempo_total <= 0:
+        pygame.mixer.music.stop()
+        hud.gameOver(pontosShow)
+        break
 
     # Verifica se saiu da tela
     gasolina.outWindow()
@@ -148,8 +160,8 @@ while True:
     meteoro3.outWindow()
 
     # Aparecer a pontuação e o tempo na tela
-    startGame.tela.blit(pontuacao, (startGame.largura-300, 40))
-    startGame.tela.blit(tempo, (startGame.largura-200, 0))
+    startGame.tela.blit(pontuacao, (startGame.largura - 300, 40))
+    startGame.tela.blit(tempo, (startGame.largura - 200, 0))
 
     # Atualizar o jogo a cada iteração
     pygame.display.flip()

@@ -27,3 +27,7 @@ class Meteoro:
 
     def object(self, surface):
         return pygame.draw.rect(surface, (255, 0, 0), (self.posicao_meteorox, self.posicao_meteoroy, self.size, self.size))
+
+    def resetar(self):
+        self.posicao_meteorox = randint(0, self.largura - 40)
+        self.posicao_meteoroy = 0
