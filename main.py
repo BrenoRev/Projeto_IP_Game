@@ -72,8 +72,13 @@ while True:
 
     sabredeluz.render(startGame.tela)
 
+<<<<<<< HEAD
     # 360 segundos de tempo ao total
     tempo_total = 10
+=======
+    # 110 segundos de tempo ao total
+    tempo_total = 110
+>>>>>>> 55348b9b1ec3b259ac4e08f4254188b52b961aa8
 
     # Tirar 1 segundo a cada segundo
     tempo_total -= (pygame.time.get_ticks() / 1000)
