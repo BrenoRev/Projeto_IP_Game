@@ -90,6 +90,7 @@ while True:
     meteoro2.moveMeteoro(1.3)
     meteoro3.moveMeteoro(1.6)
 
+    print(sabredeluz.posicao_sabrex)
     # Mensagem na tela do tempo
     time = f'Tempo: {int(tempo_total)}'
     tempo = startGame.fonte.render(time, False, (255, 255, 255))
